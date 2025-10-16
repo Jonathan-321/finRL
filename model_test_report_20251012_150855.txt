@@ -1,0 +1,85 @@
+
+======================================================================
+FINRL MODEL TESTING REPORT
+======================================================================
+Generated: 2025-10-12 15:08:55
+
+EXECUTIVE SUMMARY
+-----------------
+Model Type: PPO (Proximal Policy Optimization)
+Test Period: 2023-07-01 to 2024-10-01
+Initial Capital: $1,000,000
+
+1. OUT-OF-SAMPLE PERFORMANCE
+----------------------------
+Final Capital: $1,173,189
+Total Return: +17.32%
+Annualized Return: +12.80%
+Number of Trades: 847
+Win Rate: 58.3%
+
+2. RISK METRICS
+---------------
+Sharpe Ratio: 0.509
+Sortino Ratio: 0.920
+Max Drawdown: -20.66%
+Calmar Ratio: 0.006
+Annualized Volatility: 22.96%
+VaR (95%): $-21,978
+CVaR (95%): $-27,267
+
+RISK ASSESSMENT:
+- Sharpe > 1.0: ✗ NEEDS IMPROVEMENT
+- Max Drawdown < 20%: ✗ HIGH RISK
+- Volatility < 25%: ✓ GOOD
+
+3. BENCHMARK COMPARISON
+-----------------------
+RL Strategy: +17.32%
+Buy & Hold (50 stocks): +22.80%
+Equal Weight Portfolio: +19.40%
+S&P 500 Index: +29.33%
+
+Excess Returns:
+- vs Buy & Hold: -5.48%
+- vs S&P 500: -12.01%
+
+4. TRADING BEHAVIOR
+-------------------
+Average Daily Turnover: 3.2%
+Average Holding Period: 12 days
+Average Positions: 28
+Max Position Size: 8.5%
+
+Sector Concentration (Top 3):
+  Technology: 32.5%
+  Healthcare: 18.2%
+  Financials: 15.8%
+
+5. STRESS TEST RESULTS
+----------------------
+Normal Market Return: +17.3%
+2008 Crisis Simulation: -28.4%
+COVID Crash Simulation: -18.7%
+High Volatility Scenario: +8.3%
+
+6. WALK-FORWARD VALIDATION
+--------------------------
+Average Return per Window: +11.64%
+Return Std Dev: 11.05%
+Win Rate: 75.0%
+
+OVERALL ASSESSMENT
+------------------
+Model Score: 6/10
+Rating: ⭐⭐⭐⭐ GOOD - Minor Improvements Recommended
+
+RECOMMENDATIONS
+---------------
+• Improve risk-adjusted returns (current Sharpe < 1.0)
+• Implement stronger risk management to reduce drawdowns
+• Strategy underperforms S&P 500 - consider index investing or improve model
+
+======================================================================
+END OF REPORT
+======================================================================
