@@ -1,0 +1,227 @@
+# FinRL Trading System Configuration
+# Following clean code principles with clear separation of concerns
+
+# Trading Configuration
+trading:
+  # Stock universe selection
+  stocks_50:
+    - AAPL
+    - MSFT
+    - GOOGL
+    - AMZN
+    - NVDA
+    - TSLA
+    - META
+    - BRK-B
+    - JPM
+    - JNJ
+    - V
+    - UNH
+    - HD
+    - PG
+    - MA
+    - DIS
+    - ABBV
+    - PFE
+    - XOM
+    - CVX
+    - KO
+    - PEP
+    - WMT
+    - MRK
+    - TMO
+    - CSCO
+    - ABT
+    - VZ
+    - ADBE
+    - CMCSA
+    - NKE
+    - INTC
+    - CRM
+    - NFLX
+    - T
+    - AMD
+    - UNP
+    - LIN
+    - TXN
+    - PM
+    - QCOM
+    - HON
+    - RTX
+    - NEE
+    - BMY
+    - ORCL
+    - MDT
+    - UPS
+    - LOW
+    - AMT
+
+  # Extended universe (99 stocks - production)
+  stocks_99_extended:
+    - BA
+    - CAT
+    - GS
+    - MMM
+    - AXP
+    - DE
+    - GILD
+    - LMT
+    - MO
+    - MDLZ
+    - SYK
+    - BKNG
+    - ADP
+    - TJX
+    - ISRG
+    - SPGI
+    - BLK
+    - ADI
+    - VRTX
+    - CME
+    - ZTS
+    - TMUS
+    - CI
+    - C
+    - REGN
+    - AMGN
+    - CVS
+    - SCHW
+    - INTU
+    - PLD
+    - MU
+    - AMAT
+    - NOW
+    - EL
+    - LRCX
+    - GE
+    - PYPL
+    - KLAC
+    - CDNS
+    - SNPS
+    - MAR
+    - MELI
+    - FTNT
+    - ORLY
+    - ADSK
+    - ASML
+    - WDAY
+    - PANW
+    - PCAR
+
+  # Position limits
+  position_limits:
+    max_position_size: 0.10  # 10% max per stock
+    max_sector_exposure: 0.30  # 30% max per sector
+    min_cash_reserve: 0.10  # 10% minimum cash
+
+  # Risk management
+  risk_management:
+    max_drawdown: 0.15  # 15% portfolio stop loss
+    position_stop_loss: 0.10  # 10% individual position stop
+    daily_var_limit: 0.03  # 3% daily value at risk
+    volatility_threshold: 40  # VIX threshold for reduced exposure
+
+# Model Configuration
+model:
+  # PPO hyperparameters
+  ppo:
+    learning_rate: 0.00025
+    n_steps: 2048
+    batch_size: 64
+    n_epochs: 10
+    gamma: 0.99
+    gae_lambda: 0.95
+    clip_range: 0.2
+    ent_coef: 0.01
+    vf_coef: 0.5
+    max_grad_norm: 0.5
+
+  # Training settings
+  training:
+    total_timesteps_local: 100000
+    total_timesteps_cloud: 500000
+    validation_split: 0.2
+    test_split: 0.1
+
+# Technical Indicators
+indicators:
+  # List of technical indicators to use
+  enabled:
+    - macd
+    - macd_signal
+    - macd_hist
+    - rsi_30
+    - cci_30
+    - dx_30
+    - close_30_sma
+    - close_60_sma
+    - atr
+    - boll
+    - boll_ub
+    - boll_lb
+    - close_30_sma
+    - close_60_sma
+    - vwap
+    - obv
+    - ad
+    - kdjk
+    - kdjd
+    - kdjj
+
+  # Indicator parameters
+  parameters:
+    rsi_period: 30
+    cci_period: 30
+    dx_period: 30
+    sma_short: 30
+    sma_long: 60
+    bollinger_period: 20
+    bollinger_std: 2
+
+# Data Configuration
+data:
+  # Data sources
+  source: yahoo  # yahoo, alpaca, polygon
+
+  # Date ranges
+  train_start_date: "2020-01-01"
+  train_end_date: "2023-06-30"
+  test_start_date: "2023-07-01"
+  test_end_date: "2024-12-31"
+
+  # Data processing
+  fillna_method: "ffill"  # forward fill missing values
+  normalize: false  # whether to normalize features
+
+# Environment Configuration
+environment:
+  # Market hours (Eastern Time)
+  market_open: "09:30"
+  market_close: "16:00"
+
+  # Trading fees
+  commission: 0.001  # 0.1% commission
+  slippage: 0.001  # 0.1% slippage
+
+  # Initial capital
+  initial_capital: 100000
+
+# Alpaca Configuration (use environment variables for secrets)
+alpaca:
+  paper_trading_url: "https://paper-api.alpaca.markets"
+  data_url: "https://data.alpaca.markets"
+  api_version: "v2"
+
+# Modal Configuration
+modal:
+  gpu_type: "a100"
+  timeout_minutes: 180
+  memory_mb: 32768
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/trading.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5

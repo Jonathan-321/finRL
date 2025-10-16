@@ -83,3 +83,7 @@ backtest_results/
 
 # Alpaca credentials
 alpaca_config.py
+# Logs and images
+*.log
+*.png
+*.jpg
